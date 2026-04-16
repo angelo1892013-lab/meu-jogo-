@@ -1,13 +1,14 @@
 
+
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Clica Rápido</title>
+  <title>Jogo Novo</title>
 </head>
 
 <body>
 
-<h1>🎮 Clica Rápido!</h1>
+<h1>🎮 Novo Jogo</h1>
 
 <p>⏱️ Tempo: <span id="tempo">10</span></p>
 <p>👆 Cliques: <span id="cliques">0</span></p>
@@ -16,9 +17,9 @@
 <button onclick="reiniciar()">🔄 Repetir</button>
 
 <p id="msg"></p>
- </p>cliques:00
+
 <script>
-let tempoInicial = 15;
+let tempoInicial = 10;
 let tempo = tempoInicial;
 let cliques = 0;
 let gameOver = false;
@@ -42,7 +43,7 @@ function iniciar() {
       gameOver = true;
       document.getElementById("tempo").innerText = 0;
       document.getElementById("msg").innerText =
-        "⛔ Tempo acabou! Fizeste " + cliques + " cliques";
+        "⛔ Fim do jogo! Fizeste " + cliques + " cliques";
       return;
     }
 
@@ -55,8 +56,12 @@ function iniciar() {
 function clicar() {
   if (gameOver) return;
 
- 
+  cliques++;
   document.getElementById("cliques").innerText = cliques;
+
+  // 🔊 som simples
+  let audio = new Audio("https://www.soundjay.com/buttons/sounds/button-3.mp3");
+  audio.play();
 }
 
 function reiniciar() {
@@ -68,4 +73,3 @@ iniciar();
 
 </body>
 </html>
-
