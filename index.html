@@ -55,7 +55,7 @@ function iniciar() {
 function clicar() {
   if (gameOver) return;
 
-  cliques++;
+ 
   document.getElementById("cliques").innerText = cliques;
 }
 
@@ -69,12 +69,3 @@ iniciar();
 </body>
 </html>
 
-<audio id="som" src="meusom.mp3"></audio>
-
-<button onclick="play()">Clica</button>
-
-<script>
-function play() {
-  document.getElementById("som").play();
-}
-</script>
