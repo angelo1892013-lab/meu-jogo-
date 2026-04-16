@@ -1,31 +1,56 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Clica Rápido</title>
+</head>
+
+<body>
+
 <h1>🎮 Clica Rápido!</h1>
 
 <p>⏱️ Tempo: <span id="tempo">10</span></p>
 <p>👆 Cliques: <span id="cliques">0</span></p>
 
 <button onclick="clicar()">CLICA AQUI!</button>
+<button onclick="reiniciar()">🔄 Repetir</button>
 
 <p id="msg"></p>
 
 <script>
-let tempo = 10;
+let tempoInicial = 10;
+let tempo = tempoInicial;
 let cliques = 0;
 let gameOver = false;
+let timer;
 
-let timer = setInterval(() => {
-  tempo--;
+function iniciar() {
+  clearInterval(timer);
 
-  if (tempo <= 0) {
-    tempo = 0; // 👈 isto impede ficar negativo
-    gameOver = true;
-    clearInterval(timer);
-
-    document.getElementById("msg").innerText =
-      "⛔ Tempo acabou! Fizeste " + cliques + " cliques";
-  }
+  tempo = tempoInicial;
+  cliques = 0;
+  gameOver = false;
 
   document.getElementById("tempo").innerText = tempo;
-}, 1000);
+  document.getElementById("cliques").innerText = cliques;
+  document.getElementById("msg").innerText = "";
+
+  timer = setInterval(() => {
+
+    if (tempo <= 0) {
+      clearInterval(timer);
+      gameOver = true;
+      document.getElementById("tempo").innerText = 0;
+      document.getElementById("msg").innerText =
+        "⛔ Tempo acabou! Fizeste " + cliques + " cliques";
+      return;
+    }
+
+    tempo--;
+    document.getElementById("tempo").innerText = tempo;
+
+  }, 1000);
+}
 
 function clicar() {
   if (gameOver) return;
@@ -33,4 +58,13 @@ function clicar() {
   cliques++;
   document.getElementById("cliques").innerText = cliques;
 }
+
+function reiniciar() {
+  iniciar();
+}
+
+iniciar();
 </script>
+
+</body>
+</html>
